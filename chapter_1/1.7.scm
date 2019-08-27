@@ -5,6 +5,7 @@
 (define (improve guess x)
  (average guess (/ x guess)))
 
+; new version of good-enough?
 (define (good-enough? guess x)
  (< (/ (abs (- (improve guess x) guess)) guess) 0.01))
 
