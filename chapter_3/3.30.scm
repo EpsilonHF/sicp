@@ -1,0 +1,16 @@
+; define ripple-carry
+(define (ripple-carry a-list b-list s-list c)
+ (define (iter a b c s)
+  (if (and (null? a) (null? b) (null? s))
+      'ok
+      (let ((ai (car a))
+            (bi (car b))
+            (si (car s))
+            (a_next (cdr a))
+            (b_next (cdr b))
+            (s_next (cdr s))
+            (ci (make-wire)))
+       (set-signal! ci c)
+       (full-adder ai bi ci si c)
+       (iter a_next b_next c s_next))))
+ (iter a-list b-list (get-signal c) s-list))
